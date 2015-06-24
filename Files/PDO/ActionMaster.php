@@ -1,1 +1,3 @@
-This will have all the possible actions using PDO
+<?php
+#Initiatilizing with Database Connectivity
+?>

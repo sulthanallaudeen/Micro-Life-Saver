@@ -1,0 +1,14 @@
+{
+    "name": "sulthan/excel",
+    "description": "Excel Library",
+    "type": "lib",
+    "authors": [
+        {
+            "name": "Sulthan Allaudeen",
+            "email": "sa@sulthanallaudeen.com"
+        }
+    ],
+    "require": {
+        "phpoffice/phpspreadsheet": "^1.6"
+    }
+}

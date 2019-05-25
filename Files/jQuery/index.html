@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Jquery Helper</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../_assets/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../_assets/css/dashboard.css" rel="stylesheet">
+  </head>
+
+  <body>
+    <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+      <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">JQuery Helper</a>
+      <ul class="navbar-nav px-3">
+        <li class="nav-item text-nowrap">
+          <a class="nav-link" href="#">Sign out</a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+        <main role="main" class="col-md">
+          <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+            <h1 class="h2">Dashboard</h1>
+          </div>
+          <div class="">
+            <button class="btn btn-primary alertMe">Button On Click Alert with Class Name</button>
+            <button class="btn btn-primary" id="alertMe">Button On Click Alert with Id</button>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Open modal</button>
+            <hr>
+            Forms : 
+            <div class="row">
+                <div style="width:33%" class="col">
+                  <h3>Get Method</h3>
+                  <select class="form-control col-5" id="profileSection">
+                      <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option>
+                  </select>
+                  <br>
+                  <button class="btn btn-primary" id="getMethod">Get Method</button>
+                </div>
+                <div style="width:33%" class="col">
+                    <h3>Post Method</h3>
+                    <form autocomplete="off">
+                      <div class="form-group">
+                      <label for="name">Name:</label>
+                        <input type="text" class="form-control" id="name" placeholder="Enter Name" name="name" autocomplete="off">
+                      </div>
+                      <div class="form-group">
+                        <label for="job">Job:</label>
+                        <input type="text" class="form-control" id="job" placeholder="Enter Job" name="job">
+                      </div>
+                      <button class="btn btn-primary" type="button" id="postMethod">Post Method</button>
+                    </form>
+                </div>
+                <div style="width:33%" class="col">
+                    <h3>Output : </h3>
+                    <div class="card">
+                      <div class="card-header">Output : </div>
+                      <div class="card-body" id="cardResult"></div>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <!-- start of modal -->
+    <!-- The Modal -->
+<div class="modal" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Modal Heading</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        Modal body..
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+    <!-- end of modal -->
+
+    <!-- jQuery Library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script>
+      $(document).ready(function(){
+        //1. Console to print the document is loaded
+        console.log('Loaded JQuery');
+        //2. Button On Click Alert with Class Name
+        $(".alertMe").click(function(){
+          alert("Button On Click Alert with Class Name");
+        });
+        //3. Button On Click Alert with Id
+        $("#alertMe").click(function(){
+          alert("Button On Click Alert with Id");
+        });
+        //4. Get Method
+        var baseUrl = "https://reqres.in/api/";
+        $("#getMethod").click(function(){
+          var selectedProfile = $('#profileSection :selected').text();
+          alert("Selected profile id "+selectedProfile);
+          $.get( baseUrl+'users/'+selectedProfile, function( data ) {
+            data  = JSON.stringify(data);
+            $("#cardResult").html(data);
+          });
+        });
+        $("#postMethod").click(function(){
+          var name = $("#name").val();
+          var job = $("#job").val();
+          alert("Name is  "+name);
+          alert("Job is  "+job);
+          $.post(baseUrl+"users",
+          {
+            name: name,
+            job: job
+          },
+          function(data,status){
+            data  = JSON.stringify(data);
+            $("#cardResult").html(data);
+          });
+        });
+      });
+      </script>
+
+  </body>
+</html>

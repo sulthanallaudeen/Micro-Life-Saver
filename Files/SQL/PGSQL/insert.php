@@ -1,7 +1,7 @@
 <?php
 include('config/config.php');
 $table_name = "airport_master";
-for ($i=0; $i < ; $i++) { 
+for ($i=0; $i < 5; $i++) { 
     $query = "INSERT INTO  ".$table_name."(id,code, name) VALUES (141,'abd','alpha')";
     $ret = pg_query($db, $query);
     if(!$ret) {
